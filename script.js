@@ -1,46 +1,44 @@
-// script.js
-let remainingDays = 30; // 初期値
+let days = 0; // 日数の初期値
 
-// DOM要素取得
-const dayCount = document.getElementById("dayCount");
-const completeButton = document.getElementById("completeButton");
-const settingsButton = document.getElementById("settingsButton");
-const popupOverlay = document.getElementById("popupOverlay");
-const daysInput = document.getElementById("daysInput");
-const applyButton = document.getElementById("applyButton");
-const closeButton = document.getElementById("closeButton");
+// 日数を保存して画面に表示
+function saveDays() {
+    const input = document.getElementById("daysInput");
+    days = Math.max(0, parseInt(input.value) || 0); // 負の値を防ぐ
+    updateDaysDisplay();
+    closeSettings();
+}
 
-// 初期日数の表示
-dayCount.textContent = remainingDays;
+// 日数を表示する関数
+function updateDaysDisplay() {
+    const daysDisplay = document.getElementById("daysDisplay");
+    daysDisplay.textContent = `${days} 日`;
+}
 
-// 1日完了ボタンの動作
-completeButton.addEventListener("click", () => {
-  if (remainingDays > 0) {
-    remainingDays--;
-    dayCount.textContent = remainingDays;
-  } else {
-    alert("カウントダウンが終了しました！");
-  }
-});
+// 次の日数に進む（減少）
+function nextDay() {
+    if (days > 0) {
+        days--;
+        updateDaysDisplay();
+    }
+}
 
-// 設定ボタンの動作
-settingsButton.addEventListener("click", () => {
-  popupOverlay.style.display = "flex"; // ポップアップを表示
-});
+// 前の日数に戻る（増加）
+function prevDay() {
+    days++;
+    updateDaysDisplay();
+}
 
-// 適用ボタンの動作
-applyButton.addEventListener("click", () => {
-  const inputDays = parseInt(daysInput.value, 10);
-  if (!isNaN(inputDays) && inputDays > 0) {
-    remainingDays = inputDays; // 日数を更新
-    dayCount.textContent = remainingDays;
-    popupOverlay.style.display = "none"; // ポップアップを閉じる
-  } else {
-    alert("正しい日数を入力してください！");
-  }
-});
+// 設定モーダルを開く
+function openSettings() {
+    document.getElementById("settingsModal").style.display = "block";
+}
 
-// 閉じるボタンの動作
-closeButton.addEventListener("click", () => {
-  popupOverlay.style.display = "none"; // ポップアップを閉じる
-});
+// 設定モーダルを閉じる
+function closeSettings() {
+    document.getElementById("settingsModal").style.display = "none";
+}
+
+// 初期化処理
+window.onload = function () {
+    updateDaysDisplay();
+};
