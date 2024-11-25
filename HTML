@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>設定可能な日数カウントダウン</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- 設定画面 -->
+  <div class="settings-container">
+    <h2>設定画面</h2>
+    <label for="daysInput">日数を設定:</label>
+    <input type="number" id="daysInput" min="1" value="30">
+    <button id="applyButton">適用</button>
+  </div>
+
+  <!-- カウントダウン表示 -->
+  <div class="countdown-container">
+    <div class="countdown-display" id="daysDisplay">30 日</div>
+    <button id="decreaseButton">日数を減らす</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
