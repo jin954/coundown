@@ -1,36 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>カウントダウンウィジェット</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日数カウントダウン</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="countdown-container">
-    <!-- 日数表示エリア -->
-    <div class="image-container">
-      <div class="day-count" id="dayCount">30</div>
+    <div class="image-container" id="imageContainer">
+        <p id="daysDisplay" class="image">0 日</p>
     </div>
 
-    <!-- ボタンエリア -->
-    <div class="button-container">
-      <button id="settingsButton">♦</button>
-      <button id="completeButton">1日完了</button>
+    <div class="control-buttons">
+        <span class="triangle-button" onclick="prevDay()">&#9664;</span>
+        <span class="diamond-button" onclick="openSettings()">&#9670;</span> <!-- ◆に変更 -->
+        <span class="triangle-button" onclick="nextDay()">&#9654;</span>
     </div>
-  </div>
 
-  <!-- 設定画面（ポップアップ） -->
-  <div class="popup-overlay" id="popupOverlay">
-    <div class="popup">
-      <h2>設定画面</h2>
-      <label for="daysInput">日数を設定:</label>
-      <input type="number" id="daysInput" min="1" value="30">
-      <button id="applyButton">適用</button>
-      <button id="closeButton">閉じる</button>
+    <div id="settingsModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeSettings()">&times;</span>
+            <h2>設定</h2>
+
+            <!-- 日数入力セクション -->
+            <div class="day-settings">
+                <label for="daysInput">日数 :</label>
+                <input type="number" id="daysInput" class="input-days" value="0" min="0">
+                <button onclick="saveDays()">保存</button>
+            </div>
+
+            <br>
+            <button class="close-button-bottom" onclick="closeSettings()">閉じる</button>
+        </div>
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
